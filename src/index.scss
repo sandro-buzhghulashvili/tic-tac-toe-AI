@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './scss_partials/variables';
+
+body {
+  background: $background-color;
+}
