@@ -3,12 +3,21 @@ import starSmIcon from '../assets/icons/star-sm.png';
 import starLgIcon from '../assets/icons/star-lg.png';
 import ufoIcon from '../assets/icons/ufo.png';
 import rocketIcon from '../assets/icons/rocket.png';
-import Icon from '../components/Icon';
+import Icon from './UI/Icon';
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { sceneActions } from '../store/scene-slice';
 
 export default function IntroPage() {
+  const dispatch = useDispatch();
+
+  function handleScreenChange() {
+    dispatch(sceneActions.selectMode());
+  }
   return (
-    <div
+    <motion.div
+      exit={{ opacity: 0, position: 'fixed' }}
+      transition={{ duration: 0.2 }}
       className={`relative w-11/12 h-3/4 sm:w-3/4 sm:h-1/2 md:w-1/2 lg:h-3/5 lg:w-1/3 xl:w-1/4 flex flex-col items-center`}
     >
       <motion.img
@@ -29,6 +38,7 @@ export default function IntroPage() {
         <Icon url={starLgIcon} />
       </div>
       <motion.button
+        onClick={handleScreenChange}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
@@ -38,6 +48,6 @@ export default function IntroPage() {
       </motion.button>
       <Icon url={ufoIcon} className="absolute bottom-10 right-0" />
       <Icon url={rocketIcon} className="absolute -bottom-5 -left-5" />
-    </div>
+    </motion.div>
   );
 }
