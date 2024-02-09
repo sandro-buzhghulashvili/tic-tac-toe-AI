@@ -32,11 +32,9 @@ export default function SelectMode() {
       variants={{
         hidden: {
           opacity: 0,
-          y: 200,
         },
         visible: {
           opacity: 1,
-          y: 0,
         },
       }}
       exit={{ opacity: 0, y: 200, position: 'fixed' }}
@@ -60,7 +58,7 @@ export default function SelectMode() {
                 MEDIUM
               </button>
               <button
-                onClick={() => handleStart('ai')}
+                onClick={() => handleStart('hard')}
                 className="py-3 px-5 text-lg mb-5 text-white rounded-2xl bg-red-600 "
               >
                 AI(Minimax algorithm)

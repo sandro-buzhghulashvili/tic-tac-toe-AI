@@ -3,7 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import defaultX from '../assets/icons/x-v1.png';
 import defaultO from '../assets/icons/o-v1.png';
 
-const initialValue = {
+const initialValue: {
+  X: string;
+  O: string;
+} = {
   X: defaultX,
   O: defaultO,
 };

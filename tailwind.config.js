@@ -9,6 +9,7 @@ export default {
         secondary_purple: '#eb00ff',
         primary_blue: '#391898',
         primary_gray: '#C4C4C4',
+        gameboard_bg: '#391898',
       },
     },
   },

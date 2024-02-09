@@ -4,29 +4,42 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
 import classes from '../GameScreen.module.scss';
+import { motion } from 'framer-motion';
 
-const Board: React.FC<{ board: any[] }> = ({ board }) => {
+const Board: React.FC<{
+  board: any[];
+  onSquareClick: (rowIndex: number, colIndex: number) => void;
+}> = ({ board, onSquareClick }) => {
   const activeIcons = useSelector((state: RootState) => state.menu);
 
-  console.log(activeIcons);
-  console.log(board);
   return (
     <ul className={classes.board}>
-      {board.map((row: [], rowIndex: number) => {
+      {board.map((row: any[], rowIndex: number) => {
         return (
           <li key={rowIndex}>
             <ul className="flex">
               {row.map((col: any, colIndex: number) => {
+                const iconKey: 'X' | 'O' = col;
                 return (
                   <li key={colIndex}>
                     <button
-                      className={`p-2 mr-3 mb-5 bg-green-500 rounded-3xl flex`}
+                      disabled={col}
+                      onClick={() => onSquareClick(rowIndex, colIndex)}
+                      className={`p-2 my-5 mx-2  ${
+                        col ? 'bg-green-500' : 'bg-primary_gray'
+                      } duration-300 rounded-3xl flex`}
                     >
-                      <img
-                        className="w-16 h-16 rounded-3xl"
-                        src={activeIcons['X']}
-                        alt="icon"
-                      />
+                      {col ? (
+                        <motion.img
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="w-16 h-16 rounded-3xl"
+                          src={activeIcons[iconKey]}
+                          alt="icon"
+                        />
+                      ) : (
+                        <div className="w-16 h-16 rounded-3xl"></div>
+                      )}
                     </button>
                   </li>
                 );

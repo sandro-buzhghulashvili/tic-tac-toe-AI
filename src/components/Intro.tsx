@@ -17,7 +17,7 @@ export default function IntroPage() {
   return (
     <motion.div
       exit={{ opacity: 0, position: 'fixed' }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.7 }}
       className={`relative w-11/12 h-3/4 sm:w-3/4 sm:h-1/2 md:w-1/2 lg:h-3/5 lg:w-1/3 xl:w-1/4 flex flex-col items-center`}
     >
       <motion.img

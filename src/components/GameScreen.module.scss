@@ -1,1 +1,7 @@
 @import '../scss_partials/variables';
+
+.board {
+  padding: 20px;
+  border-radius: 20px;
+  background-color: $primary-blue;
+}
