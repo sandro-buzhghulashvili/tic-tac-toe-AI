@@ -2,23 +2,25 @@ import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import React, { ReactNode } from 'react';
 
-const Modal: React.FC<{ children?: ReactNode; onClose: () => void }> = ({
-  children,
-  onClose,
-}) => {
+const Modal: React.FC<{
+  children?: ReactNode;
+  onClose: () => void;
+  delay?: number;
+}> = ({ children, onClose, delay = 0.3 }) => {
   return (
     <motion.div
       className="fixed z-10 top-0 left-0 w-full h-screen bg-backdrop_color"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ duration: delay }}
       onClick={onClose}
     >
       <motion.div
         initial={{ y: 400 }}
         animate={{ y: 0 }}
         exit={{ y: 400 }}
-        className="fixed z-20 top-0 left-0 right-0 bottom-0 m-auto h-fit w-fit bg-primary_blue p-10 border-2 border-white rounded-xl"
+        className="fixed z-20 top-0 left-0 right-0 bottom-0 m-auto h-fit w-fit bg-primary_blue px-5 py-10 border-2 border-white rounded-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <span

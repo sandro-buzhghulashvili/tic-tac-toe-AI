@@ -8,6 +8,7 @@ interface initialValueType {
     X: number;
     O: number;
   };
+  players?: any;
 }
 
 const initalValue: initialValueType = {
@@ -17,6 +18,10 @@ const initalValue: initialValueType = {
   scoreboard: {
     X: 0,
     O: 0,
+  },
+  players: {
+    X: 'Player 1',
+    O: 'Player 2',
   },
 };
 
@@ -35,6 +40,27 @@ const gameSlice = createSlice({
     },
     updateScore(state, action: PayloadAction<'X' | 'O'>) {
       state.scoreboard[action.payload]++;
+    },
+    resetScore(state) {
+      state.scoreboard['X'] = 0;
+      state.scoreboard['O'] = 0;
+    },
+    setPlayers(state, action: PayloadAction<any>) {
+      if (action.payload) {
+        state.players = {
+          X: action.payload.X,
+          O: action.payload.O,
+        };
+      }
+    },
+    resetPlayers(state) {
+      state.players = {
+        X: 'Player 1',
+        O: 'Player 2',
+      };
+    },
+    switchGameMode(state, action) {
+      state.mode = action.payload;
     },
   },
 });

@@ -10,6 +10,7 @@ export default {
         primary_blue: '#391898',
         primary_gray: '#C4C4C4',
         gameboard_bg: '#391898',
+        sky_blue: '#4C8BD4',
       },
     },
   },

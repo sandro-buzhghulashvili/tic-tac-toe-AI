@@ -4,6 +4,7 @@ import Icon from './UI/Icon';
 import robotImg from '../assets/icons/robot.png';
 import multiplayerImg from '../assets/icons/multiplayer.png';
 import marketImg from '../assets/icons/store.png';
+import gamePadImg from '../assets/icons/gamepad.png';
 
 import classes from './SelectMode.module.scss';
 import Mode from './UI/Mode';
@@ -13,13 +14,19 @@ import Modal from './UI/Modal';
 import { useDispatch } from 'react-redux';
 import { gameSliceActions } from '../store/game-slice';
 import { sceneActions } from '../store/scene-slice';
+import SelectPlayers from './SelectPlayers';
 
 export default function SelectMode() {
   const dispatch = useDispatch();
   const [chooseDifficulty, setChooseDifficulty] = useState<boolean>(false);
+  const [selectPlayers, setSelectPlayers] = useState<boolean>(false);
 
   function handleDifficulty() {
     setChooseDifficulty((prevValue) => !prevValue);
+  }
+
+  function handleSelectPlayers() {
+    setSelectPlayers((prevValue) => !prevValue);
   }
 
   function handleStart(difficulty: string) {
@@ -40,6 +47,7 @@ export default function SelectMode() {
       exit={{ opacity: 0, y: 200, position: 'fixed' }}
       initial="hidden"
       animate="visible"
+      className="relative"
     >
       <AnimatePresence>
         {chooseDifficulty && (
@@ -67,6 +75,9 @@ export default function SelectMode() {
           </Modal>
         )}
       </AnimatePresence>
+      <AnimatePresence>
+        {selectPlayers && <SelectPlayers onClose={handleSelectPlayers} />}
+      </AnimatePresence>
       <div className="flex items-center mb-20">
         <h1 className="text-3xl text-white mr-10">Select Game</h1>
         <div className="relative flex flex-col">
@@ -79,6 +90,8 @@ export default function SelectMode() {
           </span>
         </div>
       </div>
+      <Icon className="absolute -bottom-12 right-0" url={gamePadImg} />
+
       <motion.ul
         variants={{
           hidden: {},
@@ -95,7 +108,12 @@ export default function SelectMode() {
           text="Single Player"
           theme="yellow"
         />
-        <Mode icon={multiplayerImg} text="Two Players" theme="purple" />
+        <Mode
+          onClick={handleSelectPlayers}
+          icon={multiplayerImg}
+          text="Two Players"
+          theme="purple"
+        />
         <Mode icon={marketImg} text="Market Place" theme="blue" />
       </motion.ul>
     </motion.div>
