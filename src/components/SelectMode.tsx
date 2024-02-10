@@ -97,6 +97,15 @@ export default function SelectMode() {
         </div>
       </div>
       <Icon className="absolute -bottom-12 right-0" url={gamePadImg} />
+      <span className="absolute -bottom-20 right-0 left-0 flex flex-col items-center">
+        GAME DEVELOPED BY :{' '}
+        <a
+          className="font-bold text-white block"
+          href="https://sandro-buzhgulashvili.web.app/"
+        >
+          SANDRO BUZHGHULASHVILI
+        </a>
+      </span>
 
       <motion.ul
         variants={{
