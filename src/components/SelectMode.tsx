@@ -11,12 +11,14 @@ import Mode from './UI/Mode';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import Modal from './UI/Modal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { gameSliceActions } from '../store/game-slice';
 import { sceneActions } from '../store/scene-slice';
 import SelectPlayers from './SelectPlayers';
+import { RootState } from '../store';
 
 export default function SelectMode() {
+  const budget = useSelector((state: RootState) => state.scenes.budget);
   const dispatch = useDispatch();
   const [chooseDifficulty, setChooseDifficulty] = useState<boolean>(false);
   const [selectPlayers, setSelectPlayers] = useState<boolean>(false);
@@ -27,6 +29,10 @@ export default function SelectMode() {
 
   function handleSelectPlayers() {
     setSelectPlayers((prevValue) => !prevValue);
+  }
+
+  function handleMarketplace() {
+    dispatch(sceneActions.marketMode());
   }
 
   function handleStart(difficulty: string) {
@@ -86,7 +92,7 @@ export default function SelectMode() {
             className="absolute -top-12 right-0 mx-auto w-24 h-24"
           />
           <span className="py-2 px-7 inline-block bg-primary_purple text-white border-2 border-white rounded-full">
-            100
+            {budget}
           </span>
         </div>
       </div>
@@ -114,7 +120,12 @@ export default function SelectMode() {
           text="Two Players"
           theme="purple"
         />
-        <Mode icon={marketImg} text="Market Place" theme="blue" />
+        <Mode
+          onClick={handleMarketplace}
+          icon={marketImg}
+          text="Market Place"
+          theme="blue"
+        />
       </motion.ul>
     </motion.div>
   );

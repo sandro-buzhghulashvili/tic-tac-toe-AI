@@ -14,7 +14,14 @@ const initialValue: {
 const menuSlice = createSlice({
   name: 'menu',
   initialState: initialValue,
-  reducers: {},
+  reducers: {
+    changeSkins(state, { payload }) {
+      state.X = payload.X;
+      state.O = payload.O;
+    },
+  },
 });
+
+export const menuSliceActions = menuSlice.actions;
 
 export default menuSlice.reducer;

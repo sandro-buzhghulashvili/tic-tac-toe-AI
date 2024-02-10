@@ -26,7 +26,7 @@ const Board: React.FC<{
                       disabled={col}
                       onClick={() => onSquareClick(rowIndex, colIndex)}
                       className={`p-2 my-5 mx-2  ${
-                        col ? 'bg-green-500' : 'bg-primary_gray'
+                        col ? 'bg-green-300' : 'bg-primary_gray'
                       } duration-300 rounded-3xl flex`}
                     >
                       {col ? (

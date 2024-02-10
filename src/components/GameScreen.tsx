@@ -103,8 +103,6 @@ export default function GameScreen() {
     activePlayerOnMultiplayerMode = deriveActivePlayer(turns);
   }
 
-  console.log(gameMode);
-
   let board: any[] = [...initalBoard.map((row) => [...row])];
 
   for (let turn of turns) {
@@ -282,7 +280,6 @@ export default function GameScreen() {
     }
     if (winner && winner !== 'tie') {
       dispatch(gameSliceActions.updateScore(winner));
-      console.log(winner);
     }
   }, [activePlayer, activePlayerOnMultiplayerMode]);
 

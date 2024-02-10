@@ -5,6 +5,7 @@ import { RootState } from './store';
 import SelectMode from './components/SelectMode';
 import { AnimatePresence } from 'framer-motion';
 import GameScreen from './components/GameScreen';
+import MarketPlace from './components/MarketPlace';
 
 export default function App() {
   const screenMode = useSelector((state: RootState) => state.scenes);
@@ -18,6 +19,9 @@ export default function App() {
         {screenMode.selectModeScreen && <SelectMode />}
       </AnimatePresence>
       {screenMode.gameScreen && <GameScreen />}
+      <AnimatePresence>
+        {screenMode.marketScreen && <MarketPlace />}
+      </AnimatePresence>
     </div>
   );
 }
